@@ -9,7 +9,7 @@ function navbar(){
  </div>
 <div id="login">
    <h3><a href="login.html"> Login</a></h3>
-   <h3><a href="Signup.html">Signup</a> </h3>
+   <h3><a href="signup.html">Signup</a> </h3>
 </div>`
 }
 
