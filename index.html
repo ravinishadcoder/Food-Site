@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div class="input">
+    <input type="text"  placeholder="search your food here" id="input">
+</div>
+    <div id="container"></div>
+  </body>
+</html>
+
+<script type="module">
+  import navbar from "../component/navbar.js";
+
+  document.getElementById("navbar").innerHTML = navbar();
+  document.getElementById("input").addEventListener("input",Searchrecipe);
+
+  
+  let container = document.getElementById("container");
+
+  import { getData, append } from "./script/fetch.js";
+  let id;
+function Searchrecipe(){
+    container.innerHTML = null;
+    if(id){
+        clearTimeout(id)
+    }
+   id =  setTimeout(()=>{
+        let query = document.getElementById("input").value;
+   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`;
+
+   getData(url).then((res) => {
+    console.log(res.meals);
+    append(res.meals, container);
+  });
+
+    },1000)
+   
+    
+}  
+const url1 = `https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood`
+    getData(url1).then((res) => {
+    console.log(res.meals);
+    append(res.meals, container);
+  }); 
+
+  
+
+
+ 
+</script>
